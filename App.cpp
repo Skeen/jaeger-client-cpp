@@ -1,14 +1,14 @@
 #include <iostream>
 
-#include <yaml-cpp/yaml.h>
-
 #include <jaegertracing/Tracer.h>
+#include <yaml-cpp/yaml.h>
 
 namespace {
 
 void setUpTracer(const char* configFilePath)
 {
     auto configYAML = YAML::LoadFile(configFilePath);
+    std::cout << configYAML << std::endl;
     auto config = jaegertracing::Config::parse(configYAML);
     auto tracer = jaegertracing::Tracer::make(
         "example-service", config, jaegertracing::logging::consoleLogger());
