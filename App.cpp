@@ -8,7 +8,6 @@ namespace {
 void setUpTracer(const char* configFilePath)
 {
     auto configYAML = YAML::LoadFile(configFilePath);
-    std::cout << configYAML << std::endl;
     auto config = jaegertracing::Config::parse(configYAML);
     auto tracer = jaegertracing::Tracer::make(
         "example-service", config, jaegertracing::logging::consoleLogger());
